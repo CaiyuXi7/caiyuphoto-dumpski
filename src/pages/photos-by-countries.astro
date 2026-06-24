@@ -1,0 +1,135 @@
+---
+const countries = [
+  {
+    name: "Kyrgyzstan",
+    href: "/countries/kyrgyzstan",
+    cover: "/photos/photo2.jpg",
+    description: "Yurt camps, mountain lakes, horse treks, and nomadic landscapes."
+  },
+  {
+    name: "Antarctica",
+    href: "/countries/antarctica",
+    cover: "/photos/photo1.jpg",
+    description: "Ice, wildlife, seals, glaciers, and remote polar landscapes."
+  }
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Photos by Countries | Caiyu Xi Photography</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <main>
+      <a class="back" href="/">← Back Home</a>
+
+      <section class="intro">
+        <p>Photo archive</p>
+        <h1>Photos by Countries</h1>
+      </section>
+
+      <section class="country-grid">
+        {countries.map((country) => (
+          <a class="country-card" href={country.href}>
+            <img src={country.cover} alt={country.name} />
+
+            <div class="overlay">
+              <h2>{country.name}</h2>
+              <p>{country.description}</p>
+            </div>
+          </a>
+        ))}
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fffaf3;
+    color: #2b1a12;
+  }
+
+  main {
+    padding: 56px 8%;
+  }
+
+  .back {
+    color: #bf5700;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .intro {
+    margin: 48px 0;
+  }
+
+  .intro p {
+    color: #bf5700;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .intro h1 {
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    margin: 0;
+  }
+
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+
+  .country-card {
+    position: relative;
+    height: 460px;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+  }
+
+  .country-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .country-card:hover img {
+    transform: scale(1.04);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.1)
+    );
+  }
+
+  .overlay h2 {
+    font-size: 2rem;
+    margin: 0 0 10px;
+  }
+
+  .overlay p {
+    max-width: 420px;
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
