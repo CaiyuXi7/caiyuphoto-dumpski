@@ -1,17 +1,268 @@
 ---
-
+const topPhotos = [
+  {
+    src: "/photos/photo1.jpg",
+    caption: "A leopard seal peeking up onto ice in the depths of Antarctica.",
+    location: "Antarctica",
+    date: "December 2025",
+    camera: "Camera TBD"
+  },
+  {
+    src: "/photos/photo2.jpg",
+    caption: "Picture taken within a yurt camp at Song-Kol Lake, where a local child enjoys a swing.",
+    location: "Song-Kol Lake, Kyrgyzstan",
+    date: "June 2026",
+    camera: "Camera TBD"
+  },
+  {
+    src: "/photos/photo3.jpg",
+    caption: "Naturally formed ice sculpture near the bays of Antarctica.",
+    location: "Antarctica",
+    date: "December 2025",
+    camera: "Camera TBD"
+  },
+  {
+    src: "/photos/photo4.jpg",
+    caption: "Caption for your fourth photo.",
+    location: "Location",
+    date: "Date",
+    camera: "Camera TBD"
+  }
+];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Caiyu Xi Photography</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="name">
+        <h1>Caiyu Xi</h1>
+        <p>Travel Photography</p>
+      </div>
+
+      <div class="contact">
+        <a href="mailto:caiyujonathanxi@gmail.com">caiyujonathanxi@gmail.com</a>
+        <span>Instagram: @Caiyujonathanxi</span>
+      </div>
+    </header>
+
+    <nav>
+      <a href="/">Home</a>
+      <a href="/landscape">Landscape</a>
+      <a href="/wildlife">Wildlife</a>
+      <a href="/culture">Culture</a>
+      <a href="/countries">Countries</a>
+    </nav>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">Personal archive</p>
+        <h2>Personal Travel Photography</h2>
+        <p>
+          Hi, this is my personal travel photography page that was made just for fun.
+          Many of the photos capture the culture, landscape, or wildlife at the places
+          I've been.
+        </p>
+      </section>
+
+      <section class="gallery">
+        {topPhotos.map((photo) => (
+          <figure>
+            <div class="photo-header">
+              <h3>{photo.location}</h3>
+              <p>{photo.date} • {photo.camera}</p>
+            </div>
+
+            <img src={photo.src} alt={photo.caption} />
+
+            <figcaption>
+              <p class="caption">{photo.caption}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </section>
+    </main>
+  </body>
 </html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: #fffaf3;
+    color: #2b1a12;
+  }
+
+  header {
+    background: #bf5700;
+    color: white;
+    padding: 28px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Libre Baskerville", serif;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .name p {
+    margin: 6px 0 0;
+    opacity: 0.9;
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: right;
+    font-size: 0.95rem;
+  }
+
+  .contact a {
+    color: white;
+    text-decoration: none;
+  }
+
+  nav {
+    padding: 14px 8%;
+    background: white;
+    border-bottom: 1px solid #eee0d2;
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: #bf5700;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  main {
+    padding: 56px 8%;
+  }
+
+  .intro {
+    max-width: 780px;
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    color: #bf5700;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+
+  .intro h2 {
+    color: #2b1a12;
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin: 0 0 18px;
+  }
+
+  .intro p {
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 76px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  .photo-header {
+    margin-bottom: 16px;
+    border-left: 3px solid #bf5700;
+    padding-left: 14px;
+  }
+
+  .photo-header h3 {
+    margin: 0 0 6px;
+    font-family: "Libre Baskerville", serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: #24160f;
+  }
+
+  .photo-header p {
+    margin: 0;
+    color: #7b6f67;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  figcaption {
+    max-width: 720px;
+    margin-top: 18px;
+  }
+
+  .caption {
+    font-family: "Libre Baskerville", serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #24160f;
+    margin: 0;
+  }
+
+  @media (max-width: 700px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .contact {
+      text-align: left;
+    }
+
+    main {
+      padding: 40px 6%;
+    }
+
+    .gallery {
+      gap: 56px;
+    }
+
+    .photo-header h3 {
+      font-size: 1.25rem;
+    }
+  }
+</style>
